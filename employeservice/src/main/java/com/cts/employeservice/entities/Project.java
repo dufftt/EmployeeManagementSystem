@@ -1,48 +1,64 @@
 package com.cts.employeservice.entities;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Project {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long pId;
-	
-	private long dId;
-	private String pName;
-	private String pDomain;
-	private long managerId;
+	private long ProjectID;
+	private String ProjectName;
+	private long uId;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date startDate;
+	private Date StartDate;
+	
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date endDate;
-	
-	private boolean status;
-	
-	public Project()
-	{
-		
-	}
+	private Date EndDate;
 	
 
-	public Project(long pId, long dId, String pName, String pDomain, long managerId, Date startDate, Date endDate,
-			boolean status) {
+	private String ProjectDomain;
+	private String ProjectStatus;
+	
+	
+	@UpdateTimestamp
+	private LocalDateTime updatedtime;
+	
+	private String updatedby;    //plid or empid something
+	
+	
+	
+
+	protected Project() {
+		
+	}
+
+
+	public Project(long projectID, String projectName, long uId, Date startDate, Date endDate, String projectDomain,
+			String projectStatus, LocalDateTime updatedtime, String updatedby) {
 		super();
-		this.pId = pId;
-		this.dId = dId;
-		this.pName = pName;
-		this.pDomain = pDomain;
-		this.managerId = managerId;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.status = status;
+		ProjectID = projectID;
+		ProjectName = projectName;
+		this.uId = uId;
+		StartDate = startDate;
+		EndDate = endDate;
+		ProjectDomain = projectDomain;
+		ProjectStatus = projectStatus;
+		this.updatedtime = updatedtime;
+		this.updatedby = updatedby;
 	}
 
 
@@ -50,86 +66,95 @@ public class Project {
 		return pId;
 	}
 
+
 	public void setpId(long pId) {
 		this.pId = pId;
 	}
 
-	public long getdId() {
-		return dId;
+	public long getProjectID() {
+		return ProjectID;
 	}
 
-	public void setdId(long dId) {
-		this.dId = dId;
+
+	public void setProjectID(long projectID) {
+		ProjectID = projectID;
 	}
 
-	public String getpName() {
-		return pName;
+
+	public String getProjectName() {
+		return ProjectName;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
-	}
 
-	public String getpDomain() {
-		return pDomain;
+	public void setProjectName(String projectName) {
+		ProjectName = projectName;
 	}
-
-	public void setpDomain(String pDomain) {
-		this.pDomain = pDomain;
-	}
-
-	public long getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(long managerId) {
-		this.managerId = managerId;
+	public long getuId() {
+		return uId;
 	}
 
 	public Date getStartDate() {
-		return startDate;
+		return StartDate;
 	}
 
+
 	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+		StartDate = startDate;
 	}
 
 	public Date getEndDate() {
-		return endDate;
+		return EndDate;
 	}
 
 	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+		EndDate = endDate;
 	}
 
-	public boolean isStatus() {
-		return status;
+	public String getProjectDomain() {
+		return ProjectDomain;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setProjectDomain(String projectDomain) {
+		ProjectDomain = projectDomain;
+	}
+
+
+	public String getProjectStatus() {
+		return ProjectStatus;
+	}
+
+
+	public void setProjectStatus(String projectStatus) {
+		ProjectStatus = projectStatus;
+	}
+
+
+	public LocalDateTime getUpdatedtime() {
+		return updatedtime;
+	}
+
+	public void setUpdatedtime(LocalDateTime updatedtime) {
+		this.updatedtime = updatedtime;
+	}
+
+
+	public String getUpdatedby() {
+		return updatedby;
+	}
+
+	public void setUpdatedby(String updatedby) {
+		this.updatedby = updatedby;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Project [pId=" + pId + ", dId=" + dId + ", pName=" + pName + ", pDomain=" + pDomain + ", managerId="
-				+ managerId + ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status + "]";
+		return "Project [pId=" + pId + ", ProjectID=" + ProjectID + ", ProjectName=" + ProjectName + ", uId=" + uId
+				+ ", StartDate=" + StartDate + ", EndDate=" + EndDate + ", ProjectDomain=" + ProjectDomain
+				+ ", ProjectStatus=" + ProjectStatus + ", updatedtime=" + updatedtime + ", updatedby=" + updatedby
+				+ "]";
 	}
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
 	
 
 }
